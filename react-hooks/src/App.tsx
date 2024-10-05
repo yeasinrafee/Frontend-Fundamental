@@ -1,15 +1,16 @@
 // import UseReducerExample from './pages/UseReducerExample';
 import { useContext } from 'react';
 // import UseRefExample from './pages/UseRefExample';
-import { ThemeContext } from './context/ThemeProvider';
+import { ThemeContext, TThemeContext } from './context/ThemeProvider';
+import UserList from './components/UserList';
 
 function App() {
-  const { dark, setDark } = useContext(ThemeContext);
+  const { dark, setDark } = useContext(ThemeContext) as TThemeContext;
   return (
     <>
       {/* <UseReducerExample /> */}
       {/* <UseRefExample /> */}
-      <div
+      {/* <div
         className={`w-full h-screen flex justify-center items-center ${
           dark ? 'bg-black text-white' : 'bg-white text-black'
         }`}
@@ -20,7 +21,8 @@ function App() {
         >
           Toggle
         </button>
-      </div>
+      </div> */}
+      <UserList />
     </>
   );
 }
