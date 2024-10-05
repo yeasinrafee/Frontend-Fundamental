@@ -1,11 +1,11 @@
 // import UseReducerExample from './pages/UseReducerExample';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 // import UseRefExample from './pages/UseRefExample';
-import { ThemeContext, TThemeContext } from './context/ThemeProvider';
+// import { ThemeContext, TThemeContext } from './context/ThemeProvider';
 import UserList from './components/UserList';
 
 function App() {
-  const { dark, setDark } = useContext(ThemeContext) as TThemeContext;
+  // const { dark, setDark } = useContext(ThemeContext) as TThemeContext;
   return (
     <>
       {/* <UseReducerExample /> */}
