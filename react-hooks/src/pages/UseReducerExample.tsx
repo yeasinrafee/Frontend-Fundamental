@@ -28,7 +28,7 @@ const UseReducerExample = () => {
   };
   return (
     <div>
-      <h1 className='text-3xl my-10 text-center font-semibold'>Use Ref</h1>
+      <h1 className='text-3xl my-10 text-center font-semibold'>Use Reducer</h1>
 
       <form onSubmit={handleSubmit} className='flex flex-col w-1/2 mx-auto'>
         <label> Name: </label>

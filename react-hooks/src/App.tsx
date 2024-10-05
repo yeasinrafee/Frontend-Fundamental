@@ -1,9 +1,11 @@
-import UseReducerExample from './pages/UseReducerExample';
+// import UseReducerExample from './pages/UseReducerExample';
+import UseRefExample from './pages/UseRefExample';
 
 function App() {
   return (
     <>
-      <UseReducerExample />
+      {/* <UseReducerExample /> */}
+      <UseRefExample />
     </>
   );
 }
