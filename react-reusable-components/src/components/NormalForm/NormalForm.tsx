@@ -1,9 +1,17 @@
 import { useForm } from 'react-hook-form';
 import cn from '../../utils/cn';
 import Button from '../ui/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SignUpSchema, TNormalForm } from './validaton';
 
 const NormalForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TNormalForm>({
+    resolver: zodResolver(SignUpSchema),
+  });
 
   const double = true;
   return (
@@ -28,8 +36,13 @@ const NormalForm = () => {
               className='w-full'
               type='text'
               id='name'
-              {...register('name')}
+              {...register('name', { required: true })}
             />
+            {errors.name && (
+              <span className='text-red-500 text-sm'>
+                {errors.name.message}
+              </span>
+            )}
           </div>
           <div className='w-full'>
             <label className='block' htmlFor='email'>
@@ -41,6 +54,11 @@ const NormalForm = () => {
               id='email'
               {...register('email')}
             />
+            {errors.email && (
+              <span className='text-red-500 text-sm'>
+                {errors.email.message}
+              </span>
+            )}
           </div>
           <div className='w-full'>
             <label className='block' htmlFor='password'>
@@ -50,8 +68,13 @@ const NormalForm = () => {
               className='w-full'
               type='password'
               id='password'
-              {...register('password')}
+              {...register('password', { minLength: 8 })}
             />
+            {errors.password && (
+              <span className='text-red-500 text-sm'>
+                {errors.password.message}
+              </span>
+            )}
           </div>
         </div>
 
