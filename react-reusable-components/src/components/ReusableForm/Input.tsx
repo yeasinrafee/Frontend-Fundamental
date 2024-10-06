@@ -1,4 +1,6 @@
-export const Input = ({ label, register, errors, type }) => {
+import { TInput } from '../../types';
+
+export const Input = ({ label, register, errors, type }: TInput) => {
   return (
     <div className='w-full'>
       <label className='block' htmlFor='name'>

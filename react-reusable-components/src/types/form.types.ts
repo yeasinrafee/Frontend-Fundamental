@@ -5,3 +5,10 @@ export type TForm = {
   onSubmit: SubmitHandler<FieldValues>;
   double?: boolean;
 };
+
+export type TInput = {
+  label: string;
+  register: string;
+  errors: string;
+  type: string;
+};
