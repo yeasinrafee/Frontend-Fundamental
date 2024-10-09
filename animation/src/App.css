@@ -1,0 +1,25 @@
+.main {
+  border: 2px solid black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 500px;
+}
+
+.box-1 {
+  background-color: red;
+  width: 150px;
+  height: 150px;
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+  margin: 10px;
+}
+
+.box-1:hover {
+  transform: translateZ(400px);
+  -webkit-transform: translateZ(400px);
+  -moz-transform: translateZ(400px);
+  -ms-transform: translateZ(400px);
+  -o-transform: translateZ(400px);
+}
