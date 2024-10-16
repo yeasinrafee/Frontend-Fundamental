@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Button } from '../button';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   return (
