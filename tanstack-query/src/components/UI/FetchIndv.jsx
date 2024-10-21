@@ -24,7 +24,9 @@ const FetchIndv = () => {
         <p>{data.body}</p>
       </div>
       <NavLink to='/rq'>
-        <button>Go Back</button>
+        <button className='bg-gray-500 text-white px-3 py-1 my-5'>
+          Go Back
+        </button>
       </NavLink>
     </div>
   );

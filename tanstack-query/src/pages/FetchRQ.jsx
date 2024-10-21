@@ -1,25 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { fetchPosts } from '../API/api';
 import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 
 const FetchRQ = () => {
-  const getPostData = async () => {
-    try {
-      const res = await fetchPosts();
-      return res.status === 200 ? res.data : [];
-    } catch (err) {
-      console.log(err);
-      return [];
-    }
-  };
+  const [pageNumber, setPageNumber] = useState(0);
 
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ['posts'], // useState
-    queryFn: getPostData, // useEffect
-    // gcTime: 1000,
-    // staleTime: 10000,
-    // refetchInterval: 1000,
-    // refetchIntervalInBackground: true,
+    queryKey: ['posts', pageNumber], // useState
+    queryFn: () => fetchPosts(pageNumber), // useEffect
+    placeholderData: keepPreviousData,
   });
 
   console.log(data);
@@ -46,6 +36,23 @@ const FetchRQ = () => {
           );
         })}
       </ul>
+
+      <div className='flex justify-center items-center gap-5 my-7'>
+        <button
+          disabled={pageNumber === 0 ? true : false}
+          onClick={() => setPageNumber((prev) => prev - 3)}
+          className='bg-gray-500 text-white px-3 py-1'
+        >
+          Prev
+        </button>
+        <p>{pageNumber / 3 + 1}</p>
+        <button
+          onClick={() => setPageNumber((prev) => prev + 3)}
+          className='bg-gray-500 text-white px-3 py-1'
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
