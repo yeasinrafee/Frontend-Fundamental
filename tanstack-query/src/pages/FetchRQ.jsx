@@ -1,5 +1,10 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { fetchPosts } from '../API/api';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { deletePost, fetchPosts, updatePost } from '../API/api';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -12,7 +17,25 @@ const FetchRQ = () => {
     placeholderData: keepPreviousData,
   });
 
-  console.log(data);
+  const queryClient = useQueryClient();
+
+  const deleteMutation = useMutation({
+    mutationFn: (id) => deletePost(id),
+    onSuccess: (data, id) => {
+      queryClient.setQueryData(['posts', pageNumber], (curElem) => {
+        return curElem?.filter((postId) => postId.id !== id);
+      });
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: (id) => updatePost(id),
+    onSuccess: (data, id) => {
+      queryClient.setQueryData(['posts', pageNumber], (curElem) => {
+        return curElem?.filter((postId) => postId.id !== id);
+      });
+    },
+  });
 
   if (isPending) return <p>Loading...</p>;
   if (isError) return <p>{error.message}</p>;
@@ -32,6 +55,20 @@ const FetchRQ = () => {
                 <p className='font-semibold uppercase'>{title}</p>
                 <p>{body}</p>
               </NavLink>
+              <div className='flex items-center gap-5'>
+                <button
+                  onClick={() => deleteMutation.mutate(id)}
+                  className='bg-gray-500 text-white px-3 py-1'
+                >
+                  Delete
+                </button>
+                <button
+                  onClick={() => deleteMutation.mutate(id)}
+                  className='bg-gray-500 text-white px-3 py-1'
+                >
+                  Update
+                </button>
+              </div>
             </li>
           );
         })}

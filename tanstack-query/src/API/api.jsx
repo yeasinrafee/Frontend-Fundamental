@@ -23,3 +23,13 @@ export const fetchIndvPost = async (id) => {
     console.log(error);
   }
 };
+
+export const deletePost = (id) => {
+  return api.delete(`/posts/${id}`);
+};
+
+export const updatePost = (id) => {
+  return api.patch(`/posts/${id}`, {
+    title: 'updated title',
+  });
+};
