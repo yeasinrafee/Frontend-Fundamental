@@ -1,9 +1,8 @@
-const api = () => {
-  return (
-    <div>
-      <h1>api</h1>
-    </div>
-  );
-};
+import axios from 'axios';
 
-export default api;
+const api = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com',
+});
+export const fetchPosts = () => {
+  return api.get('/posts');
+};
