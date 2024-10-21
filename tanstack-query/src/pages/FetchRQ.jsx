@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { fetchPosts } from '../API/api';
+import { NavLink } from 'react-router-dom';
 
 const FetchRQ = () => {
   const getPostData = async () => {
@@ -36,8 +37,11 @@ const FetchRQ = () => {
               key={id}
               className='px-5 py-3 border-l-8 border-l-gray-500 space-y-2 shadow-md w-[800px] mx-auto rounded-md'
             >
-              <p className='font-semibold uppercase'>{title}</p>
-              <p>{body}</p>
+              <NavLink to={`/rq/${id}`}>
+                <p>{id}</p>
+                <p className='font-semibold uppercase'>{title}</p>
+                <p>{body}</p>
+              </NavLink>
             </li>
           );
         })}
