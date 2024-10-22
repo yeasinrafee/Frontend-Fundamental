@@ -14,6 +14,9 @@ const Header = () => {
           <li className='text-base underline'>
             <Link to='/rq'>FetchRQ</Link>
           </li>
+          <li className='text-base underline'>
+            <Link to='/infinite'>InfiniteScroll</Link>
+          </li>
         </ul>
       </div>
     </nav>

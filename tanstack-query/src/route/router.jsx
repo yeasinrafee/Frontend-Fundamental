@@ -3,6 +3,7 @@ import Home from '../pages/Home';
 import FetchRQ from '../pages/FetchRQ';
 import App from '../App';
 import FetchIndv from '../components/UI/FetchIndv';
+import InfiniteScroll from '../pages/InfiniteScroll';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: 'rq/:id',
         element: <FetchIndv />,
+      },
+      {
+        path: 'infinite',
+        element: <InfiniteScroll />,
       },
     ],
   },

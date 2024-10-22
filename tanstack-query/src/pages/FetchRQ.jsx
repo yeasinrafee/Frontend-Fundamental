@@ -30,9 +30,13 @@ const FetchRQ = () => {
 
   const updateMutation = useMutation({
     mutationFn: (id) => updatePost(id),
-    onSuccess: (data, id) => {
-      queryClient.setQueryData(['posts', pageNumber], (curElem) => {
-        return curElem?.filter((postId) => postId.id !== id);
+    onSuccess: (apiData, postId) => {
+      queryClient.setQueryData(['posts', pageNumber], (postData) => {
+        return postData?.map((curPost) => {
+          return curPost.id === postId
+            ? { ...curPost, title: apiData.data.title }
+            : curPost;
+        });
       });
     },
   });
@@ -63,7 +67,7 @@ const FetchRQ = () => {
                   Delete
                 </button>
                 <button
-                  onClick={() => deleteMutation.mutate(id)}
+                  onClick={() => updateMutation.mutate(id)}
                   className='bg-gray-500 text-white px-3 py-1'
                 >
                   Update
